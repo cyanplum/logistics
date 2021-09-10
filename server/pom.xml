@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.sevenlion.logistics</groupId>
-    <artifactId>Logistics</artifactId>
+    <artifactId>logistics</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
@@ -15,7 +15,6 @@
         <module>logistics-business</module>
         <module>logistics-integral</module>
         <module>logistics-common</module>
-        <module>logistics-security</module>
     </modules>
 
     <parent>
