@@ -1,0 +1,7 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  cn.sevenlion.logistics.common.config.MybatisPlusConfig,\
+  cn.sevenlion.logistics.common.config.RedisConfig,\
+  cn.sevenlion.logistics.common.config.Swagger2Config,\
+  cn.sevenlion.logistics.common.config.WebMvcConfig,\
+  cn.sevenlion.logistics.common.properties.SwaggerProperties,\
+  cn.sevenlion.logistics.common.util.SpringApplicationContext

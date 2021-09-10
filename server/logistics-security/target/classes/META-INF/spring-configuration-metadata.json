@@ -1,0 +1,32 @@
+{
+  "groups": [
+    {
+      "name": "sevenlion.security",
+      "type": "cn.sevenlion.logistics.security.properties.SevenlionSecurityProperties",
+      "sourceType": "cn.sevenlion.logistics.security.properties.SevenlionSecurityProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "sevenlion.security.access-token-expire-in",
+      "type": "java.lang.Integer",
+      "sourceType": "cn.sevenlion.logistics.security.properties.SevenlionSecurityProperties"
+    },
+    {
+      "name": "sevenlion.security.image-code",
+      "type": "cn.sevenlion.logistics.security.properties.ImageValidateCodeProperties",
+      "sourceType": "cn.sevenlion.logistics.security.properties.SevenlionSecurityProperties"
+    },
+    {
+      "name": "sevenlion.security.inject-class",
+      "type": "java.lang.Class<java.lang.Object>",
+      "sourceType": "cn.sevenlion.logistics.security.properties.SevenlionSecurityProperties"
+    },
+    {
+      "name": "sevenlion.security.name",
+      "type": "java.lang.String",
+      "sourceType": "cn.sevenlion.logistics.security.properties.SevenlionSecurityProperties"
+    }
+  ],
+  "hints": []
+}

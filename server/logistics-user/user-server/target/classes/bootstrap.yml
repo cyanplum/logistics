@@ -1,0 +1,30 @@
+server:
+  port: 8600
+spring:
+  application:
+    name: logistics-user
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.115.130.89:8848
+    sentinel:
+      transport:
+        dashboard: 47.115.130.89:8080
+        port: 8719
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      id-type: auto
+    banner: false
+  mapper-locations: classpath*:/mapper/*.xml
+  check-config-location: true
+

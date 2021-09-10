@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: cyanplum-gateway
+server:
+  port: 7777
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      # 展示详情
+      show-details: always
+sa-token:
+  token-name: Authorization
+  is-print: false
+  timeout: 3600
+  activity-timeout: 1
+  is-concurrent: false
+  is-share: false
+  token-style: simple-uuid
+  is-log: true
+  is-read-head: true
