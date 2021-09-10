@@ -34,9 +34,11 @@ sa-token:
   token-name: Authorization
   is-print: false
   timeout: 3600
-  activity-timeout: 1
+  activity-timeout: 3600
   is-concurrent: false
   is-share: false
   token-style: simple-uuid
   is-log: true
   is-read-head: true
+  is-read-body: false
+  token-prefix: Bearer

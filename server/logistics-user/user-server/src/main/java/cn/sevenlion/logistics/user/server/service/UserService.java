@@ -1,6 +1,8 @@
 package cn.sevenlion.logistics.user.server.service;
 
+import cn.sevenlion.logistics.user.common.model.entity.UserEntity;
 import cn.sevenlion.logistics.user.server.model.bo.UserAuthBo;
+import cn.sevenlion.logistics.user.server.model.query.UserAuthQueryModel;
 
 /**
  * @author create by:
@@ -15,8 +17,8 @@ import cn.sevenlion.logistics.user.server.model.bo.UserAuthBo;
 public interface UserService {
     /**
      * 登录校验
-     * @param bo
+     * @param queryModel
      * @return
      */
-    boolean auth(UserAuthBo bo);
+    UserEntity auth(UserAuthQueryModel queryModel);
 }

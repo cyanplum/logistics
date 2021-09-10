@@ -14,7 +14,6 @@
     <modules>
         <module>business-server</module>
         <module>business-common</module>
-        <module>business-api</module>
     </modules>
 
 

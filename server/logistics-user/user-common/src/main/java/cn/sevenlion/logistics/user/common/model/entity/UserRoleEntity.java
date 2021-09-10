@@ -29,11 +29,11 @@ public class UserRoleEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "主键")
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableField(value = "id")
     private Integer id;
 
     @ApiModelProperty(value = "唯一编码")
-    @TableField("serial_code")
+    @TableId("serial_code")
     private String serialCode;
 
     @ApiModelProperty(value = "角色标签")

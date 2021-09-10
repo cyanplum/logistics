@@ -1,10 +1,10 @@
 server:
   port: 8600
   servlet:
-    context-path: /user
+    context-path: /business
 spring:
   application:
-    name: logistics-user
+    name: logistics-business
   profiles:
     active: dev
   cloud:

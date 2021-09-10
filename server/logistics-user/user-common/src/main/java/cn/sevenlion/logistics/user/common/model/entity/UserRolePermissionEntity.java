@@ -28,16 +28,19 @@ public class UserRolePermissionEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableField(value = "id")
     private Integer id;
+
+    @TableId("serial_code")
+    private String serialCode;
 
     @ApiModelProperty(value = "角色id")
     @TableField("role_code")
-    private Integer roleCode;
+    private String roleCode;
 
     @ApiModelProperty(value = "权限id")
     @TableField("permission_code")
-    private Integer permissionCode;
+    private String permissionCode;
 
 
 }
