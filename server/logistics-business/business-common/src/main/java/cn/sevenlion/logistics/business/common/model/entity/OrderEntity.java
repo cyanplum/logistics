@@ -1,12 +1,16 @@
 package cn.sevenlion.logistics.business.common.model.entity;
 
 import java.math.BigDecimal;
+
+import cn.sevenlion.logistics.business.common.model.jsonobject.AddressJsonObject;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -38,12 +42,12 @@ public class OrderEntity implements Serializable {
     private String serialCode;
 
     @ApiModelProperty(value = "发送地址")
-    @TableField("send_address")
-    private String sendAddress;
+    @TableField(value = "send_address",typeHandler = JacksonTypeHandler.class)
+    private AddressJsonObject sendAddress;
 
     @ApiModelProperty(value = "接收地址")
-    @TableField("receive_address")
-    private String receiveAddress;
+    @TableField(value = "receive_address", typeHandler = JacksonTypeHandler.class)
+    private AddressJsonObject receiveAddress;
 
     @ApiModelProperty(value = "邮寄名称")
     @TableField("mail_name")
@@ -59,7 +63,7 @@ public class OrderEntity implements Serializable {
 
     @ApiModelProperty(value = "邮寄物品数量 一共有多少件物品")
     @TableField("item_nums")
-    private String itemNums;
+    private Integer itemNums;
 
     @ApiModelProperty(value = "重量")
     @TableField("weight")
@@ -70,12 +74,12 @@ public class OrderEntity implements Serializable {
     private BigDecimal price;
 
     @ApiModelProperty(value = "服务类型 如上门邮寄、到店邮寄")
-    @TableField("service_type")
-    private Integer serviceType;
+    @TableField("mail_service_type")
+    private Integer mailServiceType;
 
     @ApiModelProperty(value = "服务时间")
-    @TableField("service_time")
-    private LocalDateTime serviceTime;
+    @TableField("mail_service_time")
+    private LocalDateTime mailServiceTime;
 
     @ApiModelProperty(value = "支付类型 货到付款")
     @TableField("pay_type")

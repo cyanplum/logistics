@@ -2,7 +2,7 @@ package cn.sevenlion.logistics.business.server.service.impl;
 
 import cn.sevenlion.logistics.business.common.model.entity.OrderEntity;
 import cn.sevenlion.logistics.business.server.mapper.OrderMapper;
-import cn.sevenlion.logistics.business.server.service.IOrderService;
+import cn.sevenlion.logistics.business.server.service.OrderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2021-09-11
  */
 @Service
-public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> implements IOrderService {
+public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> implements OrderService {
 
 }
