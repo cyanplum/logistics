@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author cyanplum
  * @since 2021-09-11
  */
-public interface IOrderService extends IService<OrderEntity> {
+public interface OrderService extends IService<OrderEntity> {
 
 }
