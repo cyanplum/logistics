@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -36,12 +38,22 @@ public class OrderController {
 
     @ApiOperation("下单")
     @PostMapping
-    public CommonResult order(@RequestBody OrderBo orderBo) {
+    public CommonResult order(@Valid @RequestBody OrderBo orderBo) {
+        //检查
         check(orderBo);
+        orderService.submit(orderBo);
         return CommonResult.success();
     }
 
+    @ApiOperation("计算价格")
+    @PostMapping("/calculate")
+    public CommonResult<BigDecimal> calculate(@RequestBody OrderBo orderBo) {
+        BigDecimal price = orderService.calculate(orderBo);
+        return CommonResult.success(price);
+    }
+
     private void check(OrderBo orderBo) {
+        //邮寄服务类型是上门自取，需要天蝎上门服务时间
         if (orderBo.getMailServiceType().equals(MailServiceTypeEnum.SINCE.getType())) {
             if (ObjectUtil.isNull(orderBo.getMailServiceTime())) {
                 throw new BaseException("服务时间不能为空！");

@@ -1,5 +1,6 @@
 package cn.sevenlion.logistics.common.response;//package org.uppower.sevenlion.common.utils;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -63,6 +64,9 @@ public class CommonResultPage<T> {
     }
     public static <T> CommonResultPage<T> success(){
         return new CommonResultPage(ResultCode.SUCCESS.getCode(), "成功",null,true,0L,0L);
+    }
+    public static <T> CommonResultPage<T> success(Page<T> page) {
+        return new CommonResultPage(ResultCode.SUCCESS.getCode(), "成功", page.getRecords(), true, page.getPages(), page.getTotal());
     }
 
     public static <T> CommonResultPage<T> failed(long code, String msg, List<T> data) {

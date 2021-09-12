@@ -1,6 +1,6 @@
-package cn.sevenlion.logistics.business.server.mapper;
+package cn.sevenlion.logistics.user.server.mapper;
 
-import cn.sevenlion.logistics.business.common.model.entity.AddressEntity;
+import cn.sevenlion.logistics.user.common.model.entity.AddressEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

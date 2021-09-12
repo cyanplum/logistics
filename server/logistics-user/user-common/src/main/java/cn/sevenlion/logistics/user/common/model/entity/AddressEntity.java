@@ -1,15 +1,17 @@
-package cn.sevenlion.logistics.business.common.model.entity;
+package cn.sevenlion.logistics.user.common.model.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -29,11 +31,11 @@ public class AddressEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "id")
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableField(value = "id")
     private Long id;
 
     @ApiModelProperty(value = "唯一编码")
-    @TableField("serial_code")
+    @TableId("serial_code")
     private String serialCode;
 
     @ApiModelProperty(value = "用户code")
@@ -59,6 +61,14 @@ public class AddressEntity implements Serializable {
     @ApiModelProperty(value = "电话号码")
     @TableField("phone")
     private String phone;
+
+    @ApiModelProperty(value = "创建时间")
+    @TableField("create_time")
+    private LocalDateTime createTime;
+
+    @ApiModelProperty(value = "更新时间")
+    @TableField("update_time")
+    private LocalDateTime updateTime;
 
 
 }

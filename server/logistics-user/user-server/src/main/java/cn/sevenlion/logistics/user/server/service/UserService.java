@@ -2,7 +2,10 @@ package cn.sevenlion.logistics.user.server.service;
 
 import cn.sevenlion.logistics.user.common.model.entity.UserEntity;
 import cn.sevenlion.logistics.user.server.model.bo.UserAuthBo;
+import cn.sevenlion.logistics.user.server.model.query.AddressQueryModel;
 import cn.sevenlion.logistics.user.server.model.query.UserAuthQueryModel;
+import cn.sevenlion.logistics.user.server.model.vo.AddressVo;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 /**
  * @author create by:
@@ -21,4 +24,12 @@ public interface UserService {
      * @return
      */
     UserEntity auth(UserAuthQueryModel queryModel);
+
+    /**
+     * 查询地址列表
+     * @param userCode
+     * @param queryModel
+     * @return
+     */
+    Page<AddressVo> getAddressList(String userCode, AddressQueryModel queryModel);
 }

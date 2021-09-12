@@ -15,8 +15,8 @@ import java.util.List;
 
 public class MybatisGeneratorUtil {
 
-    public static final String path = "/server/logistics-business/business-server";
-    public static final String packageConfig = "cn.sevenlion.logistics.business.server";
+    public static final String path = "/server/logistics-user/user-server";
+    public static final String packageConfig = "cn.sevenlion.logistics.user.server";
     public static final String modelConfig = "model";
     public static final String mapperConfig = "mapper";
     /**
