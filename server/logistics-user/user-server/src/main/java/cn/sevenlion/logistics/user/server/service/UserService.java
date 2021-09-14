@@ -24,12 +24,4 @@ public interface UserService {
      * @return
      */
     UserEntity auth(UserAuthQueryModel queryModel);
-
-    /**
-     * 查询地址列表
-     * @param userCode
-     * @param queryModel
-     * @return
-     */
-    Page<AddressVo> getAddressList(String userCode, AddressQueryModel queryModel);
 }

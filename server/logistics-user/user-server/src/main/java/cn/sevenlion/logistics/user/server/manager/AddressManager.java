@@ -1,5 +1,6 @@
 package cn.sevenlion.logistics.user.server.manager;
 
+import cn.hutool.core.util.StrUtil;
 import cn.sevenlion.logistics.user.common.model.entity.AddressEntity;
 import cn.sevenlion.logistics.user.server.mapper.AddressMapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -32,5 +33,13 @@ public class AddressManager {
                         .likeRight(StringUtils.isNotBlank(phone), AddressEntity::getPhone, phone)
                         .orderByDesc(AddressEntity::getCreateTime));
         return addressEntityPage;
+    }
+
+    public AddressEntity selectById(String userCode, String serialCode) {
+        AddressEntity addressEntity = addressMapper.selectOne(new QueryWrapper<AddressEntity>().lambda()
+                .eq(StrUtil.isNotBlank(serialCode), AddressEntity::getSerialCode, serialCode)
+                .eq(StrUtil.isNotBlank(userCode), AddressEntity::getUserCode, userCode)
+                .last("limit 1"));
+        return addressEntity;
     }
 }

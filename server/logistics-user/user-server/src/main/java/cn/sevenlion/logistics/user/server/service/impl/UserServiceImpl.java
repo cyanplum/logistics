@@ -67,18 +67,5 @@ public class UserServiceImpl implements UserService {
         return userEntity;
     }
 
-    @Override
-    public Page<AddressVo> getAddressList(String userCode, AddressQueryModel queryModel) {
-        Page<AddressEntity> addressEntityPage = addressManager.selectPage(queryModel.getPn(), queryModel.getSize(), userCode, queryModel.getUsername(), queryModel.getPhone());
-        if (addressEntityPage.getRecords().isEmpty()) {
-            return new Page<AddressVo>();
-        }
-        List<AddressVo> result = addressEntityPage.getRecords().stream().map(it -> {
-            AddressVo vo = new AddressVo();
-            BeanUtils.copyProperties(it, vo);
-            return vo;
-        }).collect(Collectors.toList());
-        Page<AddressVo> page = PageUtil.buildPage(addressEntityPage, result);
-        return page;
-    }
+
 }

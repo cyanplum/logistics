@@ -31,13 +31,5 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 
-    @Autowired
-    private UserService userService;
 
-    @ApiOperation("地址列表")
-    @GetMapping("/address")
-    public CommonResultPage getUserAddressPage(AddressQueryModel queryModel) {
-        Page<AddressVo> addressVoPage = userService.getAddressList(StpUtil.getLoginIdAsString() ,queryModel);
-        return CommonResultPage.success(addressVoPage);
-    }
 }

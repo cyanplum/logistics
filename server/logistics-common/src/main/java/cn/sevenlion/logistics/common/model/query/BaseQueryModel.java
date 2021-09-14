@@ -4,18 +4,11 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * @author create by:
- * *      ____        ___  ___       __          __
- * *    /  _  \     /   |/   |      | |        / /
- * *   | | | |     / /|   /| |     | |  __   / /
- * *  | | | |     / / |__/ | |    | | /  | / /
- * * | |_| |_    / /       | |   | |/   |/ /
- * * \_______|  /_/        |_|  |___/|___/
- * @date 2021/9/12 8:39 下午
+ * @author: qimeiwen
+ * @create: 2021-09-13
  */
 @Data
 public class BaseQueryModel {
-
 
     @ApiModelProperty("当前页码")
     private Integer pn = 1;
