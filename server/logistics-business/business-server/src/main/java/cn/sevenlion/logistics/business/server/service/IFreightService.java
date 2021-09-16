@@ -1,6 +1,6 @@
 package cn.sevenlion.logistics.business.server.service;
 
-import cn.sevenlion.logistics.business.common.model.entity.FreightEntity;
+import cn.sevenlion.logistics.common.model.entity.business.FreightEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

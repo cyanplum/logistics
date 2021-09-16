@@ -1,6 +1,6 @@
 package cn.sevenlion.logistics.business.server.model.bo;
 
-import cn.sevenlion.logistics.business.common.model.jsonobject.AddressJsonObject;
+import cn.sevenlion.logistics.common.model.json.AddressJsonObject;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import io.swagger.annotations.ApiModel;

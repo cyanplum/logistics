@@ -13,7 +13,7 @@
         <module>logistics-user</module>
         <module>logistics-pay</module>
         <module>logistics-business</module>
-        <module>logistics-integral</module>
+        <module>logistics-member</module>
         <module>logistics-common</module>
     </modules>
 

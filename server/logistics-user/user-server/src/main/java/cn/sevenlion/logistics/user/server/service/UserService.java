@@ -1,11 +1,7 @@
 package cn.sevenlion.logistics.user.server.service;
 
-import cn.sevenlion.logistics.user.common.model.entity.UserEntity;
-import cn.sevenlion.logistics.user.server.model.bo.UserAuthBo;
-import cn.sevenlion.logistics.user.server.model.query.AddressQueryModel;
+import cn.sevenlion.logistics.common.model.entity.user.UserEntity;
 import cn.sevenlion.logistics.user.server.model.query.UserAuthQueryModel;
-import cn.sevenlion.logistics.user.server.model.vo.AddressVo;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 /**
  * @author create by:

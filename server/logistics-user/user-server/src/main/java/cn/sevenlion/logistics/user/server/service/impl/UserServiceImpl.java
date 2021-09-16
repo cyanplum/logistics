@@ -2,28 +2,15 @@ package cn.sevenlion.logistics.user.server.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.sevenlion.logistics.common.exception.BaseException;
-import cn.sevenlion.logistics.common.util.PageUtil;
-import cn.sevenlion.logistics.user.common.model.entity.AddressEntity;
-import cn.sevenlion.logistics.user.common.model.entity.UserEntity;
-import cn.sevenlion.logistics.user.server.manager.AddressManager;
-import cn.sevenlion.logistics.user.server.manager.UserManager;
-import cn.sevenlion.logistics.user.server.mapper.UserMapper;
-import cn.sevenlion.logistics.user.server.model.bo.UserAuthBo;
-import cn.sevenlion.logistics.user.server.model.query.AddressQueryModel;
+import cn.sevenlion.logistics.common.mapper.user.UserMapper;
+import cn.sevenlion.logistics.common.model.entity.user.UserEntity;
 import cn.sevenlion.logistics.user.server.model.query.UserAuthQueryModel;
-import cn.sevenlion.logistics.user.server.model.vo.AddressVo;
 import cn.sevenlion.logistics.user.server.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author create by:
@@ -38,12 +25,6 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class UserServiceImpl implements UserService {
-
-    @Autowired
-    private UserManager userManager;
-
-    @Autowired
-    private AddressManager addressManager;
 
     @Autowired
     private UserMapper userMapper;

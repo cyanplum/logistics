@@ -1,8 +1,8 @@
 package cn.sevenlion.logistics.business.server.service.impl;
 
-import cn.sevenlion.logistics.business.common.model.entity.FreightEntity;
-import cn.sevenlion.logistics.business.server.mapper.FreightMapper;
 import cn.sevenlion.logistics.business.server.service.IFreightService;
+import cn.sevenlion.logistics.common.mapper.business.FreightMapper;
+import cn.sevenlion.logistics.common.model.entity.business.FreightEntity;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,10 @@
 package cn.sevenlion.logistics.business.server.service;
 
-import cn.sevenlion.logistics.business.common.model.entity.OrderEntity;
 import cn.sevenlion.logistics.business.server.model.bo.OrderBo;
+import cn.sevenlion.logistics.business.server.model.query.OrderQueryModel;
+import cn.sevenlion.logistics.business.server.model.vo.OrderVo;
+import cn.sevenlion.logistics.common.model.entity.business.OrderEntity;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.math.BigDecimal;
@@ -29,4 +32,18 @@ public interface OrderService extends IService<OrderEntity> {
      * @return
      */
     BigDecimal calculate(OrderBo orderBo);
+
+    /**
+     * 查询订单列表
+     * @param queryModel
+     * @return
+     */
+    Page<OrderVo> selectOrderPage(OrderQueryModel queryModel);
+
+    /**
+     * 根据主键id查询
+     * @param serialCode
+     * @return
+     */
+    OrderVo selectById(String serialCode);
 }

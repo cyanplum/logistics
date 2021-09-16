@@ -5,16 +5,15 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.sevenlion.logistics.common.exception.BaseException;
+import cn.sevenlion.logistics.common.manager.user.UserPermissionManager;
+import cn.sevenlion.logistics.common.manager.user.UserRolePermissionManager;
+import cn.sevenlion.logistics.common.mapper.user.UserRoleMapper;
+import cn.sevenlion.logistics.common.model.entity.user.PermissionEntity;
+import cn.sevenlion.logistics.common.model.entity.user.RoleEntity;
+import cn.sevenlion.logistics.common.model.entity.user.RolePermissionEntity;
+import cn.sevenlion.logistics.common.model.entity.user.UserEntity;
 import cn.sevenlion.logistics.common.response.CommonResult;
-import cn.sevenlion.logistics.user.common.model.entity.UserEntity;
-import cn.sevenlion.logistics.user.common.model.entity.UserPermissionEntity;
-import cn.sevenlion.logistics.user.common.model.entity.UserRoleEntity;
-import cn.sevenlion.logistics.user.common.model.entity.UserRolePermissionEntity;
-import cn.sevenlion.logistics.user.server.manager.UserPermissionManager;
-import cn.sevenlion.logistics.user.server.manager.UserRolePermissionManager;
-import cn.sevenlion.logistics.user.server.mapper.UserRoleMapper;
 import cn.sevenlion.logistics.user.server.model.UserInfo;
-import cn.sevenlion.logistics.user.server.model.bo.UserAuthBo;
 import cn.sevenlion.logistics.user.server.model.query.UserAuthQueryModel;
 import cn.sevenlion.logistics.user.server.service.UserService;
 import io.swagger.annotations.Api;
@@ -61,23 +60,23 @@ public class AuthController {
     public CommonResult auth(@Valid @RequestBody UserAuthQueryModel queryModel) {
         UserEntity userEntity = userService.auth(queryModel);
         String roleCode = userEntity.getRoleCode();
-        UserRoleEntity userRoleEntity = userRoleMapper.selectById(roleCode);
-        if (ObjectUtil.isNull(userRoleEntity)) {
+        RoleEntity roleEntity = userRoleMapper.selectById(roleCode);
+        if (ObjectUtil.isNull(roleEntity)) {
             throw new BaseException("用户角色不存在！");
         }
-        List<UserRolePermissionEntity> userRolePermissionEntityList = userRolePermissionManager.selectListByRoleCode(roleCode);
-        if (CollUtil.isEmpty(userRolePermissionEntityList)) {
+        List<RolePermissionEntity> rolePermissionEntityList = userRolePermissionManager.selectListByRoleCode(roleCode);
+        if (CollUtil.isEmpty(rolePermissionEntityList)) {
             throw new BaseException("角色暂无权限！");
         }
-        List<String> permissionCodeList = userRolePermissionEntityList.stream().map(UserRolePermissionEntity::getPermissionCode).collect(Collectors.toList());
-        List<UserPermissionEntity> userPermissionEntityList = userPermissionManager.selectListByCodeList(permissionCodeList);
-        List<String> permissionLabelList = userPermissionEntityList.stream().map(it -> it.getLabel()).collect(Collectors.toList());
+        List<String> permissionCodeList = rolePermissionEntityList.stream().map(RolePermissionEntity::getPermissionCode).collect(Collectors.toList());
+        List<PermissionEntity> permissionEntityList = userPermissionManager.selectListByCodeList(permissionCodeList);
+        List<String> permissionLabelList = permissionEntityList.stream().map(it -> it.getLabel()).collect(Collectors.toList());
 
         //登录授权
         StpUtil.login(userEntity.getSerialCode());
         UserInfo userInfo = new UserInfo();
         BeanUtils.copyProperties(userEntity, userInfo);
-        userInfo.setRoleName(userRoleEntity.getLabel());
+        userInfo.setRoleName(roleEntity.getLabel());
         userInfo.setPermissionList(permissionLabelList);
         StpUtil.getSession().set("userInfo",userInfo);
         SaTokenInfo tokenInfo = StpUtil.getTokenInfo();

@@ -2,17 +2,17 @@ package cn.sevenlion.logistics.business.server.controller;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.sevenlion.logistics.business.server.model.bo.OrderBo;
+import cn.sevenlion.logistics.business.server.model.query.OrderQueryModel;
+import cn.sevenlion.logistics.business.server.model.vo.OrderVo;
 import cn.sevenlion.logistics.business.server.service.OrderService;
-import cn.sevenlion.logistics.common.enums.MailServiceTypeEnum;
 import cn.sevenlion.logistics.common.exception.BaseException;
+import cn.sevenlion.logistics.common.model.enums.MailServiceTypeEnum;
 import cn.sevenlion.logistics.common.response.CommonResult;
+import cn.sevenlion.logistics.common.response.CommonResultPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
@@ -43,6 +43,18 @@ public class OrderController {
         check(orderBo);
         orderService.submit(orderBo);
         return CommonResult.success();
+    }
+
+    @ApiOperation("查询订单列表")
+    @GetMapping
+    public CommonResultPage<OrderVo> selectOrderPage(OrderQueryModel queryModel) {
+        return CommonResultPage.success(orderService.selectOrderPage(queryModel));
+    }
+
+    @ApiOperation("查询订单详情")
+    @GetMapping("/{serialCode:.+}")
+    public CommonResult<OrderVo> selectById(@PathVariable String serialCode) {
+        return CommonResult.success(orderService.selectById(serialCode));
     }
 
     @ApiOperation("计算价格")

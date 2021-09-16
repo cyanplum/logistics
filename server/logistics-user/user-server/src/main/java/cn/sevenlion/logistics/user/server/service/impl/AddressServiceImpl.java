@@ -3,11 +3,11 @@ package cn.sevenlion.logistics.user.server.service.impl;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.sevenlion.logistics.common.exception.BaseException;
+import cn.sevenlion.logistics.common.manager.user.AddressManager;
+import cn.sevenlion.logistics.common.mapper.user.AddressMapper;
+import cn.sevenlion.logistics.common.model.entity.user.AddressEntity;
 import cn.sevenlion.logistics.common.util.PageUtil;
 import cn.sevenlion.logistics.common.util.SerialCodeUtils;
-import cn.sevenlion.logistics.user.common.model.entity.AddressEntity;
-import cn.sevenlion.logistics.user.server.manager.AddressManager;
-import cn.sevenlion.logistics.user.server.mapper.AddressMapper;
 import cn.sevenlion.logistics.user.server.model.bo.AddressBo;
 import cn.sevenlion.logistics.user.server.model.query.AddressQueryModel;
 import cn.sevenlion.logistics.user.server.model.vo.AddressVo;
@@ -32,7 +32,6 @@ public class AddressServiceImpl extends ServiceImpl<AddressMapper, AddressEntity
 
     @Autowired
     private AddressManager addressManager;
-
 
     @Override
     public Page<AddressVo> findPage(String userCode, AddressQueryModel queryModel) {

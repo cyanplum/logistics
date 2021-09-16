@@ -1,11 +1,19 @@
 package cn.sevenlion.logistics.business.server.service.impl;
 
-import cn.sevenlion.logistics.business.common.model.entity.OrderEntity;
-import cn.sevenlion.logistics.business.server.mapper.OrderMapper;
+import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.sevenlion.logistics.business.server.model.bo.OrderBo;
+import cn.sevenlion.logistics.business.server.model.query.OrderQueryModel;
+import cn.sevenlion.logistics.business.server.model.vo.OrderVo;
 import cn.sevenlion.logistics.business.server.service.OrderService;
-import cn.sevenlion.logistics.common.enums.PayStatusEnum;
+import cn.sevenlion.logistics.common.exception.BaseException;
+import cn.sevenlion.logistics.common.manager.business.OrderManager;
+import cn.sevenlion.logistics.common.mapper.business.OrderMapper;
+import cn.sevenlion.logistics.common.model.entity.business.OrderEntity;
+import cn.sevenlion.logistics.common.model.enums.PayStatusEnum;
+import cn.sevenlion.logistics.common.util.PageUtil;
 import cn.sevenlion.logistics.common.util.SerialCodeUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +21,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -27,6 +37,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> impl
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
+
+    @Autowired
+    private OrderManager orderManager;
 
     @Override
     public boolean submit(OrderBo orderBo) {
@@ -45,5 +58,32 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> impl
     @Override
     public BigDecimal calculate(OrderBo orderBo) {
         return null;
+    }
+
+    @Override
+    public Page<OrderVo> selectOrderPage(OrderQueryModel queryModel) {
+        String userCode = StpUtil.getLoginIdAsString();
+        Page<OrderEntity> orderEntityPage = orderManager.selectOrderPage(queryModel.getPn(), queryModel.getSize(), userCode, queryModel.getOrderNo(), queryModel.getPayStatus());
+        if (orderEntityPage.getRecords().isEmpty()) {
+            return new Page<>();
+        }
+        List<OrderVo> result = orderEntityPage.getRecords().stream().map(it -> {
+            OrderVo vo = new OrderVo();
+            BeanUtils.copyProperties(it, vo);
+            return vo;
+        }).collect(Collectors.toList());
+        return PageUtil.buildPage(orderEntityPage, result);
+    }
+
+    @Override
+    public OrderVo selectById(String serialCode) {
+        OrderEntity orderEntity = getById(serialCode);
+        String userCode = StpUtil.getLoginIdAsString();
+        if (ObjectUtil.isNull(orderEntity) || !orderEntity.getUserCode().equals(userCode)) {
+            throw new BaseException("订单不存在！");
+        }
+        OrderVo vo = new OrderVo();
+        BeanUtils.copyProperties(orderEntity, vo);
+        return vo;
     }
 }

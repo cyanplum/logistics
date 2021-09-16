@@ -1,6 +1,6 @@
 package cn.sevenlion.logistics.business.server.service;
 
-import cn.sevenlion.logistics.business.common.model.entity.OrderFreightRelationEntity;
+import cn.sevenlion.logistics.common.model.entity.business.OrderFreightEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author cyanplum
  * @since 2021-09-11
  */
-public interface IOrderFreightRelationService extends IService<OrderFreightRelationEntity> {
+public interface IOrderFreightRelationService extends IService<OrderFreightEntity> {
 
 }
