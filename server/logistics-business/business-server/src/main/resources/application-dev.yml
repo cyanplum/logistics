@@ -25,7 +25,7 @@ feign:
   sentinel:
     enabled: true
   swagger:
-    scanUrl: cn.sevenlion.logistics.sever.controller
+    scanUrl: cn.sevenlion.logistics.sever.cn.sevenlion.logistics.member.controller
     enable: true
     title: 前台ums
     description: ums接口详情

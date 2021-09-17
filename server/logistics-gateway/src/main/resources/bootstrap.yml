@@ -9,7 +9,7 @@ spring:
         server-addr: 47.115.130.89:8848
       config:
         server-addr: 47.115.130.89:8848
-        prefix: gateway-config
+        prefix: gateway-cn.sevenlion.logistics.member.config
         file-extension: json
         group: gateway
     gateway:
@@ -24,7 +24,7 @@ spring:
       #        locator:
       #          # 是否与服务发现组件进行结合，通过 serviceId 转发到具体的服务实例。默认为false
       #          enabled: true
-      #          lower-case-service-id: true #使用小写service-id
+      #          lower-case-cn.sevenlion.logistics.member.service-id: true #使用小写service-id
       # 处理响应头重复
       globalcors:
         corsConfigurations:

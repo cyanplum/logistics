@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sevenlion.logistics.common.mapper.member.CouponBatchMapper">
+
+    <select id="selectCouponBatchForUpdate"
+            resultType="cn.sevenlion.logistics.common.model.entity.member.CouponBatchEntity">
+        SELECT * FROM member_coupon_batch AS mcb
+        <where>
+            <if test="couponCode != null and couponCode != ''">
+                AND mcb.coupon_code = #{couponCode}
+            </if>
+            <if test="">
+                AND mcb.serial_code = #{batchCode}
+            </if>
+            AND mcb.deleted = 0
+            LIMIT 1
+            FOR UPDATE
+        </where>
+    </select>
+
+    <update id="cutStock">
+        UPDATE member_coupon_batch
+        SET `receiver_num` = `receiver_num` - #{count}
+        WHERE deleted = 0
+        AND `receiver_num` - #{count} <![CDATA[>=]]> 0
+    </update>
+</mapper>

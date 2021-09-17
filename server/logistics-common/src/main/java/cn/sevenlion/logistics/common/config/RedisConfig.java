@@ -1,5 +1,6 @@
 package cn.sevenlion.logistics.common.config;
 
+import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,6 +12,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -25,6 +27,7 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.integration.redis.util.RedisLockRegistry;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -58,6 +61,13 @@ public class RedisConfig extends CachingConfigurerSupport {
         redisTemplate.setHashValueSerializer(serializer);
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(RedisLockRegistry.class)
+    public RedisLockRegistry redisLockRegistry(RedisConnectionFactory redisConnectionFactory) {
+        String registryKey = "lockRegistry";
+        return new RedisLockRegistry(redisConnectionFactory, registryKey);
     }
 
     @Bean

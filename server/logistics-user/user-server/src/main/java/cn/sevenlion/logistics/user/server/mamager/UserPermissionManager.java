@@ -1,4 +1,4 @@
-package cn.sevenlion.logistics.common.manager.user;
+package cn.sevenlion.logistics.user.server.mamager;
 
 import cn.sevenlion.logistics.common.mapper.user.UserPermissionMapper;
 import cn.sevenlion.logistics.common.model.entity.user.PermissionEntity;

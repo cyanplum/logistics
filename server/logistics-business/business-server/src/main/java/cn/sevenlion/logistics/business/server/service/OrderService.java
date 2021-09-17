@@ -35,15 +35,17 @@ public interface OrderService extends IService<OrderEntity> {
 
     /**
      * 查询订单列表
+     * @param userCode
      * @param queryModel
      * @return
      */
-    Page<OrderVo> selectOrderPage(OrderQueryModel queryModel);
+    Page<OrderVo> selectOrderPage(String userCode, OrderQueryModel queryModel);
 
     /**
      * 根据主键id查询
+     * @param userCode
      * @param serialCode
      * @return
      */
-    OrderVo selectById(String serialCode);
+    OrderVo selectById(String userCode, String serialCode);
 }

@@ -20,4 +20,8 @@ public class ObjectMapperUtil {
         }
         return value;
     }
+
+    public static ObjectMapper getObjectMapper() {
+        return objectMapper;
+    }
 }

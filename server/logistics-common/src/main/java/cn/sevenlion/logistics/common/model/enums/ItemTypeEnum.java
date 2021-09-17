@@ -18,12 +18,12 @@ public enum  ItemTypeEnum {
 
     ;
 
-    private Integer type;
+    private Integer code;
 
-    private String name;
+    private String desc;
 
-    ItemTypeEnum(Integer type, String name) {
-        this.type = type;
-        this.name = name;
+    ItemTypeEnum(Integer code, String desc) {
+        this.code = code;
+        this.desc = desc;
     }
 }

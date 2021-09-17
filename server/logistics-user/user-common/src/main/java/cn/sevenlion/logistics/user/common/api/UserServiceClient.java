@@ -1,5 +1,6 @@
 package cn.sevenlion.logistics.user.common.api;
 
+import cn.sevenlion.logistics.common.model.entity.user.UserEntity;
 import cn.sevenlion.logistics.common.response.CommonResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,5 +13,5 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface UserServiceClient {
 
     @GetMapping
-    public CommonResult selectUserByUserCode();
+    public CommonResult<UserEntity> selectUserByUserCode(String serialCode);
 }

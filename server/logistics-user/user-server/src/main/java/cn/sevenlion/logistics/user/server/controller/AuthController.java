@@ -5,8 +5,9 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.sevenlion.logistics.common.exception.BaseException;
-import cn.sevenlion.logistics.common.manager.user.UserPermissionManager;
-import cn.sevenlion.logistics.common.manager.user.UserRolePermissionManager;
+import cn.sevenlion.logistics.common.mapper.user.UserMapper;
+import cn.sevenlion.logistics.user.server.mamager.UserPermissionManager;
+import cn.sevenlion.logistics.user.server.mamager.UserRolePermissionManager;
 import cn.sevenlion.logistics.common.mapper.user.UserRoleMapper;
 import cn.sevenlion.logistics.common.model.entity.user.PermissionEntity;
 import cn.sevenlion.logistics.common.model.entity.user.RoleEntity;
@@ -20,12 +21,14 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -87,7 +90,12 @@ public class AuthController {
 
     @GetMapping
     public CommonResult test() {
-        System.out.println(StpUtil.isLogin());
+        System.out.println(Thread.currentThread().getName());
+        try {
+            Thread.sleep(100000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return CommonResult.success();
     }
 }

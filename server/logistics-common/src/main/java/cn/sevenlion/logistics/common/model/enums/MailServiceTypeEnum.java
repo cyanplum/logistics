@@ -19,13 +19,12 @@ public enum MailServiceTypeEnum {
     VISITING(1,"上门服务"),
     SINCE(2,"邮寄点自寄");
 
-    private Integer type;
+    private Integer code;
 
-    private String name;
+    private String desc;
 
-    MailServiceTypeEnum(Integer type, String name) {
-        this.type = type;
-        this.name = name;
+    MailServiceTypeEnum(Integer code, String desc) {
+        this.code = code;
+        this.desc = desc;
     }
-
 }

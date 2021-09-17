@@ -1,9 +1,8 @@
 package cn.sevenlion.logistics.user.server.service.impl;
 
-import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.sevenlion.logistics.common.exception.BaseException;
-import cn.sevenlion.logistics.common.manager.user.AddressManager;
+import cn.sevenlion.logistics.user.server.mamager.AddressManager;
 import cn.sevenlion.logistics.common.mapper.user.AddressMapper;
 import cn.sevenlion.logistics.common.model.entity.user.AddressEntity;
 import cn.sevenlion.logistics.common.util.PageUtil;
@@ -60,9 +59,9 @@ public class AddressServiceImpl extends ServiceImpl<AddressMapper, AddressEntity
     }
 
     @Override
-    public boolean update(String serialCode, AddressBo bo) {
+    public boolean update(String userCode, String serialCode, AddressBo bo) {
         AddressEntity addressEntity = getById(serialCode);
-        if (ObjectUtil.isNull(addressEntity) || !addressEntity.getUserCode().equals(StpUtil.getLoginIdAsString())) {
+        if (ObjectUtil.isNull(addressEntity) || !addressEntity.getUserCode().equals(userCode)) {
             throw new BaseException("修改失败！");
         }
         BeanUtils.copyProperties(bo, addressEntity);
@@ -71,18 +70,18 @@ public class AddressServiceImpl extends ServiceImpl<AddressMapper, AddressEntity
     }
 
     @Override
-    public boolean insert(AddressBo bo) {
+    public boolean insert(String userCode, AddressBo bo) {
         AddressEntity addressEntity = new AddressEntity();
         BeanUtils.copyProperties(bo, addressEntity);
-        addressEntity.setUserCode(StpUtil.getLoginIdAsString());
+        addressEntity.setUserCode(userCode);
         addressEntity.setSerialCode(SerialCodeUtils.generateSerialCode());
         return save(addressEntity);
     }
 
     @Override
-    public boolean delete(String serialCode) {
+    public boolean delete(String userCode, String serialCode) {
         AddressEntity addressEntity = getById(serialCode);
-        if (ObjectUtil.isNull(addressEntity) || !addressEntity.getUserCode().equals(StpUtil.getLoginIdAsString())) {
+        if (ObjectUtil.isNull(addressEntity) || !addressEntity.getUserCode().equals(userCode)) {
             throw new BaseException("删除失败！");
         }
         return removeById(serialCode);

@@ -1,4 +1,4 @@
-package cn.sevenlion.logistics.common.manager.business;
+package cn.sevenlion.logistics.business.server.manager;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;

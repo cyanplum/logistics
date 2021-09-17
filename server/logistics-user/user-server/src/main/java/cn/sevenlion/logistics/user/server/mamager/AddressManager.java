@@ -1,4 +1,4 @@
-package cn.sevenlion.logistics.common.manager.user;
+package cn.sevenlion.logistics.user.server.mamager;
 
 import cn.hutool.core.util.StrUtil;
 import cn.sevenlion.logistics.common.mapper.user.AddressMapper;

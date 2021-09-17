@@ -44,18 +44,21 @@ public class AddressController {
     @ApiOperation("修改地址")
     @PutMapping("/{serialCode:.+}")
     public CommonResult update(@PathVariable String serialCode, @Valid @RequestBody AddressBo bo) {
-        return CommonResult.success(addressService.update(serialCode, bo));
+        String userCode = StpUtil.getLoginIdAsString();
+        return CommonResult.success(addressService.update(userCode, serialCode, bo));
     }
 
     @ApiOperation("新增地址")
     @PostMapping
     public CommonResult insert(@Valid @RequestBody AddressBo bo) {
-        return CommonResult.success(addressService.insert(bo));
+        String userCode = StpUtil.getLoginIdAsString();
+        return CommonResult.success(addressService.insert(userCode, bo));
     }
 
     @ApiOperation("删除地址")
     @DeleteMapping("/serialCode:.+")
     public CommonResult delete(@PathVariable String serialCode) {
-        return CommonResult.success(addressService.delete(serialCode));
+        String userCode = StpUtil.getLoginIdAsString();
+        return CommonResult.success(addressService.delete(userCode, serialCode));
     }
 }

@@ -21,12 +21,12 @@ public enum OrderStatusEnum {
     REFUNDED(4,"退款成功"),
     REFUND_FAILED(5,"退款失败");
 
-    private Integer status;
+    private Integer code;
 
-    private String msg;
+    private String desc;
 
-    OrderStatusEnum(Integer status, String msg) {
-        this.status = status;
-        this.msg = msg;
+    OrderStatusEnum(Integer code, String desc) {
+        this.code = code;
+        this.desc = desc;
     }
 }

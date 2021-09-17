@@ -16,4 +16,12 @@
         <module>user-common</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>cn.sevenlion.logistics</groupId>
+            <artifactId>logistics-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 </project>

@@ -17,7 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @MapperScan("cn.sevenlion.logistics.**.mapper")
-@ComponentScan("cn.sevenlion.logistics")
+//@ComponentScan("cn.sevenlion.logistics")
 public class UserServerApplication {
     public static void main(String[] args) {
         SpringApplication.run(UserServerApplication.class, args);

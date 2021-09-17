@@ -1,5 +1,6 @@
 package cn.sevenlion.logistics.business.server.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.sevenlion.logistics.business.server.model.bo.OrderBo;
 import cn.sevenlion.logistics.business.server.model.query.OrderQueryModel;
@@ -48,13 +49,15 @@ public class OrderController {
     @ApiOperation("查询订单列表")
     @GetMapping
     public CommonResultPage<OrderVo> selectOrderPage(OrderQueryModel queryModel) {
-        return CommonResultPage.success(orderService.selectOrderPage(queryModel));
+        String userCode = StpUtil.getLoginIdAsString();
+        return CommonResultPage.success(orderService.selectOrderPage(userCode, queryModel));
     }
 
     @ApiOperation("查询订单详情")
     @GetMapping("/{serialCode:.+}")
     public CommonResult<OrderVo> selectById(@PathVariable String serialCode) {
-        return CommonResult.success(orderService.selectById(serialCode));
+        String userCode = StpUtil.getLoginIdAsString();
+        return CommonResult.success(orderService.selectById(userCode, serialCode));
     }
 
     @ApiOperation("计算价格")
@@ -66,7 +69,7 @@ public class OrderController {
 
     private void check(OrderBo orderBo) {
         //邮寄服务类型是上门自取，需要天蝎上门服务时间
-        if (orderBo.getMailServiceType().equals(MailServiceTypeEnum.SINCE.getType())) {
+        if (orderBo.getMailServiceType().equals(MailServiceTypeEnum.SINCE.getCode())) {
             if (ObjectUtil.isNull(orderBo.getMailServiceTime())) {
                 throw new BaseException("服务时间不能为空！");
             }

@@ -33,22 +33,26 @@ public interface AddressService extends IService<AddressEntity> {
 
     /**
      * 修改地址
+     * @param userCodd
      * @param serialCode
-     * @return
-     */
-    boolean update(String serialCode, AddressBo bo);
-
-    /**
-     * 新增地址
      * @param bo
      * @return
      */
-    boolean insert(AddressBo bo);
+    boolean update(String userCode, String serialCode, AddressBo bo);
+
+    /**
+     * 新增地址
+     * @param userCode
+     * @param bo
+     * @return
+     */
+    boolean insert(String userCode, AddressBo bo);
 
     /**
      * 删除地址
+     * @param userCode
      * @param serialCode
      * @return
      */
-    boolean delete(String serialCode);
+    boolean delete(String userCode, String serialCode);
 }

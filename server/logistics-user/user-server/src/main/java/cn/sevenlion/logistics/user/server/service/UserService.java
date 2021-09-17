@@ -2,6 +2,8 @@ package cn.sevenlion.logistics.user.server.service;
 
 import cn.sevenlion.logistics.common.model.entity.user.UserEntity;
 import cn.sevenlion.logistics.user.server.model.query.UserAuthQueryModel;
+import cn.sevenlion.logistics.user.server.model.vo.UserDetailVo;
+import cn.sevenlion.logistics.user.server.model.vo.UserVo;
 
 /**
  * @author create by:
@@ -20,4 +22,18 @@ public interface UserService {
      * @return
      */
     UserEntity auth(UserAuthQueryModel queryModel);
+
+    /**
+     * 查询用户信息
+     * @param userCode
+     * @return
+     */
+    UserVo selectUser(String userCode);
+
+    /**
+     * 查询用户详细信息
+     * @param userCode
+     * @return
+     */
+    UserDetailVo selectDetailUser(String userCode);
 }

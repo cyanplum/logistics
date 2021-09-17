@@ -18,12 +18,12 @@ public enum  PayStatusEnum {
     SUCCESS(1,"支付成功"),
     WAITING(2,"待支付"),;
 
-    private Integer status;
+    private Integer code;
 
-    private String msg;
+    private String desc;
 
-    PayStatusEnum(Integer status, String msg) {
-        this.status = status;
-        this.msg = msg;
+    PayStatusEnum(Integer code, String desc) {
+        this.code = code;
+        this.desc = desc;
     }
 }

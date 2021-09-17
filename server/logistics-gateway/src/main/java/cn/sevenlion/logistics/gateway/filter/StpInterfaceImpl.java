@@ -1,7 +1,6 @@
 package cn.sevenlion.logistics.gateway.filter;
 
 import cn.dev33.satoken.stp.StpInterface;
-import cn.dev33.satoken.stp.StpUtil;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

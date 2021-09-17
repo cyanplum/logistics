@@ -15,9 +15,9 @@ import java.util.List;
 
 public class MybatisGeneratorUtil {
 
-    public static final String path = "/server/logistics-user/user-server";
-    public static final String packageConfig = "cn.sevenlion.logistics.user.server";
-    public static final String modelConfig = "model";
+    public static final String path = "/server/logistics-common";
+    public static final String packageConfig = "cn.sevenlion.logistics.common";
+    public static final String modelConfig = "cn.sevenlion.logistics.member.model";
     public static final String mapperConfig = "mapper";
     /**
      * <p>
@@ -111,14 +111,14 @@ public class MybatisGeneratorUtil {
         strategy.setEntityLombokModel(true);
         strategy.setEntityTableFieldAnnotationEnable(true);
         strategy.setRestControllerStyle(true);
-        //strategy.setVersionFieldName("version");
+        //cn.sevenlion.logistics.member.strategy.setVersionFieldName("version");
         //设置逻辑删除字段
         strategy.setLogicDeleteFieldName("deleted");
         //去掉布尔值的is前缀
         strategy.setEntityBooleanColumnRemoveIsPrefix(true);
         strategy.setEntityBuilderModel(true);
         strategy.setRestControllerStyle(true);
-        strategy.setInclude("address","order","freight","order_freight_relation");
+        strategy.setInclude("member_coupon","member_coupon_batch","member_growth_level");
         strategy.setControllerMappingHyphenStyle(true);
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());

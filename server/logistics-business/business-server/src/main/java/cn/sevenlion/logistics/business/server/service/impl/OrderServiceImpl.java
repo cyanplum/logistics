@@ -1,13 +1,12 @@
 package cn.sevenlion.logistics.business.server.service.impl;
 
-import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.sevenlion.logistics.business.server.model.bo.OrderBo;
 import cn.sevenlion.logistics.business.server.model.query.OrderQueryModel;
 import cn.sevenlion.logistics.business.server.model.vo.OrderVo;
 import cn.sevenlion.logistics.business.server.service.OrderService;
 import cn.sevenlion.logistics.common.exception.BaseException;
-import cn.sevenlion.logistics.common.manager.business.OrderManager;
+import cn.sevenlion.logistics.business.server.manager.OrderManager;
 import cn.sevenlion.logistics.common.mapper.business.OrderMapper;
 import cn.sevenlion.logistics.common.model.entity.business.OrderEntity;
 import cn.sevenlion.logistics.common.model.enums.PayStatusEnum;
@@ -51,7 +50,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> impl
         orderEntity.setSerialCode(SerialCodeUtils.generateSerialCode());
         // 3.调用微信
         // 4.入库 待支付状态
-        orderEntity.setPayStatus(PayStatusEnum.WAITING.getStatus());
+        orderEntity.setPayStatus(PayStatusEnum.WAITING.getCode());
         return save(orderEntity);
     }
 
@@ -61,8 +60,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> impl
     }
 
     @Override
-    public Page<OrderVo> selectOrderPage(OrderQueryModel queryModel) {
-        String userCode = StpUtil.getLoginIdAsString();
+    public Page<OrderVo> selectOrderPage(String userCode, OrderQueryModel queryModel) {
+
         Page<OrderEntity> orderEntityPage = orderManager.selectOrderPage(queryModel.getPn(), queryModel.getSize(), userCode, queryModel.getOrderNo(), queryModel.getPayStatus());
         if (orderEntityPage.getRecords().isEmpty()) {
             return new Page<>();
@@ -76,9 +75,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> impl
     }
 
     @Override
-    public OrderVo selectById(String serialCode) {
+    public OrderVo selectById(String userCode, String serialCode) {
         OrderEntity orderEntity = getById(serialCode);
-        String userCode = StpUtil.getLoginIdAsString();
         if (ObjectUtil.isNull(orderEntity) || !orderEntity.getUserCode().equals(userCode)) {
             throw new BaseException("订单不存在！");
         }

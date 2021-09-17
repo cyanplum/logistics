@@ -25,4 +25,18 @@ public class PageUtil<T> {
         result.setSize(page.getSize());
         return result;
     }
+
+    public static <T> Page<T> buildPage(List<T> list, long count, int pn, int size) {
+        Page<T> page = new Page<>();
+        page.setTotal(count);
+        page.setCurrent(pn);
+        page.setSize(size);
+        page.setRecords(list);
+        if (count % size == 0) {
+            page.setPages(count / size);
+        } else {
+            page.setPages((count / size) + 1);
+        }
+        return page;
+    }
 }

@@ -19,12 +19,12 @@ public enum PayTypeEnum {
     NOW(1,"现结"),
     DELIVERY(2,"货到付款");
 
-    private Integer type;
+    private Integer code;
 
-    private String name;
+    private String desc;
 
-    PayTypeEnum(Integer type, String name) {
-        this.type = type;
-        this.name = name;
+    PayTypeEnum(Integer code, String desc) {
+        this.code = code;
+        this.desc = desc;
     }
 }

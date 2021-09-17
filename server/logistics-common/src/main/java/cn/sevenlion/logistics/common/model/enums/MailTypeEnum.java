@@ -17,12 +17,12 @@ import lombok.Getter;
 public enum  MailTypeEnum {
     ;
 
-    private Integer type;
+    private Integer code;
 
-    private String name;
+    private String desc;
 
-    MailTypeEnum(Integer type, String name) {
-        this.type = type;
-        this.name = name;
+    MailTypeEnum(Integer code, String desc) {
+        this.code = code;
+        this.desc = desc;
     }
 }

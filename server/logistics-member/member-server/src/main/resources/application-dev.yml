@@ -1,0 +1,44 @@
+spring:
+  redis:
+    port: 63779
+    host: 47.115.130.89
+    password: Sevenlion7
+  datasource:
+    url: jdbc:mysql://rm-wz9g7s1hz6b7jw0nq3o.mysql.rds.aliyuncs.com:3306/logistics?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true
+    username: sevenlion
+    password: Sevenlion7
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      initial-size: 5
+      min-idle: 10
+      max-active: 100
+      max-wait: 60000
+      filters: stat,wall,slf4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  rabbitmq:
+    host: 47.115.130.89
+    port: 5672
+    username: sevenlion
+    password: sevenlion
+    virtual-host: /
+feign:
+  sentinel:
+    enabled: true
+  swagger:
+    scanUrl: cn.sevenlion.logistics.sever.cn.sevenlion.logistics.member.controller
+    enable: true
+    title: 会员系统
+    description: 会员接口详情
+    version: 1.0
+sa-token:
+  token-name: Authorization
+  is-print: false
+  timeout: 3600
+  activity-timeout: 3600
+  is-concurrent: false
+  is-share: false
+  token-style: simple-uuid
+  is-log: true
+  is-read-head: true
+  is-read-body: false
+  token-prefix: Bearer
