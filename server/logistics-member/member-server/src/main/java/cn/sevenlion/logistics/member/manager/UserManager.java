@@ -1,4 +1,4 @@
-package manager;
+package cn.sevenlion.logistics.member.manager;
 
 import cn.sevenlion.logistics.common.model.entity.user.UserEntity;
 import lombok.extern.slf4j.Slf4j;

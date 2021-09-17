@@ -1,4 +1,4 @@
-package manager;
+package cn.sevenlion.logistics.member.manager;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
@@ -10,7 +10,6 @@ import cn.sevenlion.logistics.common.model.mogon.CouponBindEntity;
 import cn.sevenlion.logistics.common.util.PageUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +36,7 @@ public class CouponManager {
 
     @Autowired
     private CouponBatchMapper couponBatchMapper;
+
 
     public Page<CouponBindEntity> selectCouponBindPage(Integer pn, Integer size, String userCode, Integer status) {
         Criteria criteria = new Criteria();
@@ -80,5 +80,13 @@ public class CouponManager {
                 .eq(StrUtil.isNotBlank(batchCode), CouponBatchEntity::getSerialCode, batchCode)
                 .last("limit 1");
         return couponBatchMapper.selectOne(wrapper);
+    }
+
+    public CouponBatchEntity selectCouponBatchForUpdate(String couponCode, String batchCode) {
+        return couponBatchMapper.selectCouponBatchForUpdate(couponCode, batchCode);
+    }
+
+    public int cutStock(String batchCode, int count) {
+        return couponBatchMapper.cutStock(batchCode, count);
     }
 }

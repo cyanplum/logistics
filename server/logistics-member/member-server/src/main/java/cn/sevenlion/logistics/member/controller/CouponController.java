@@ -1,4 +1,4 @@
-package controller;
+package cn.sevenlion.logistics.member.controller;
 
 import cn.dev33.satoken.stp.StpUtil;
 import cn.sevenlion.logistics.common.response.CommonResult;
@@ -6,12 +6,12 @@ import cn.sevenlion.logistics.common.response.CommonResultPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import model.bo.CouponBindBo;
-import model.query.CouponQueryModel;
-import model.vo.CouponVo;
+import cn.sevenlion.logistics.member.model.bo.CouponBindBo;
+import cn.sevenlion.logistics.member.model.query.CouponQueryModel;
+import cn.sevenlion.logistics.member.model.vo.CouponVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import service.CouponService;
+import cn.sevenlion.logistics.member.service.CouponService;
 
 import javax.validation.Valid;
 
