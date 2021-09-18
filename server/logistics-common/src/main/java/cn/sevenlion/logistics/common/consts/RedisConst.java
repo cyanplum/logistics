@@ -7,6 +7,8 @@ package cn.sevenlion.logistics.common.consts;
  */
 public class RedisConst {
 
+    public static final Long LOCK_TIME = 10L;
+
     /**
      * 地址全量信息map key-地址code value-地址内容
      */
@@ -26,5 +28,10 @@ public class RedisConst {
      * 绑定卡券Lock key
      */
     public static final String COUPON_BIND_KEY = "COUPON_BIND_%s";
+
+    /**
+     * 卡券信息map<serialCode, CouponEntity>
+     */
+    public static final String COUPON_MAP = "COUPON_MAP";
 
 }

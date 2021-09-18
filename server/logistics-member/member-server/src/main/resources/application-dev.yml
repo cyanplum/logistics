@@ -3,6 +3,11 @@ spring:
     port: 63779
     host: 47.115.130.89
     password: Sevenlion7
+  data:
+    mongodb:
+      host: 47.115.130.89
+      username: cyanplum
+      password: Sevenlion
   datasource:
     url: jdbc:mysql://rm-wz9g7s1hz6b7jw0nq3o.mysql.rds.aliyuncs.com:3306/logistics?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true
     username: sevenlion

@@ -1,5 +1,6 @@
 package cn.sevenlion.logistics.common.util;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public class PageUtil<T> {
 
-    public static <T> Page<T> buildPage(Page page, List<T> t) {
+    public static <T> Page<T> buildPage(IPage page, List<T> t) {
         Page<T> result = new Page<>();
         result.setTotal(page.getTotal());
         result.setRecords(t);

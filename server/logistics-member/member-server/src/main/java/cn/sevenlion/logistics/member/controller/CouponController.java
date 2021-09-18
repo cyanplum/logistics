@@ -27,19 +27,19 @@ public class CouponController {
     @Autowired
     private CouponService couponService;
 
-    @ApiOperation("查询卡券列表")
-    @GetMapping
-    public CommonResultPage<CouponVo> selectCouponPage(CouponQueryModel queryModel) {
+    @ApiOperation("查询用户绑定卡券列表")
+    @GetMapping("/user")
+    public CommonResultPage<CouponVo> selectBindCouponPageByUser(CouponQueryModel queryModel) {
         String userCode = StpUtil.getLoginIdAsString();
-        return CommonResultPage.success(couponService.selectCouponPage(userCode, queryModel));
+        return CommonResultPage.success(couponService.selectBindCouponPageByUser(userCode, queryModel));
     }
 
-    @ApiOperation("查询卡券详情")
-    @GetMapping("/{serialCode:.+}")
+    @ApiOperation("查询用户绑定卡券详情")
+    @GetMapping("/user/{serialCode:.+}")
     @ApiImplicitParam(value = "serialCode", name = "卡券编码", paramType = "path", dataTypeClass = String.class, required = true)
-    public CommonResult<CouponVo> selectCouponById(@PathVariable String serialCode) {
+    public CommonResult<CouponVo> selectBindCouponByByUser(@PathVariable String serialCode) {
         String userCode = StpUtil.getLoginIdAsString();
-        return CommonResult.success(couponService.selectCouponById(userCode, serialCode));
+        return CommonResult.success(couponService.selectBindCouponByByUser(userCode, serialCode));
     }
 
     @ApiOperation("领取卡券")
@@ -48,5 +48,18 @@ public class CouponController {
         String userCode = StpUtil.getLoginIdAsString();
         couponService.receiveCoupon(userCode, bo);
         return CommonResult.success();
+    }
+
+    @ApiOperation("查询卡券列表")
+    @GetMapping
+    public CommonResultPage<CouponVo> selectCouponPage(CouponQueryModel queryModel) {
+        return CommonResultPage.success(couponService.selectCouponPage(queryModel));
+    }
+
+    @ApiOperation("查询卡券详情")
+    @GetMapping("/{serialCode:.+}")
+    @ApiImplicitParam(value = "serialCode", name = "卡券批次编号", paramType = "path",  dataTypeClass = String.class)
+    public CommonResult<CouponVo> selectCouponByBatchId(@PathVariable String serialCode) {
+        return CommonResult.success(couponService.selectCouponByBatchId(serialCode));
     }
 }

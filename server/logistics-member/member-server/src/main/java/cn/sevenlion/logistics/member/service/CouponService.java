@@ -11,20 +11,20 @@ import cn.sevenlion.logistics.member.model.vo.CouponVo;
  */
 public interface CouponService {
     /**
-     * 查询卡券列表
+     * 查询用户绑定卡券列表
      * @param userCode
      * @param queryModel
      * @return
      */
-    Page<CouponVo> selectCouponPage(String userCode, CouponQueryModel queryModel);
+    Page<CouponVo> selectBindCouponPageByUser(String userCode, CouponQueryModel queryModel);
 
     /**
-     * 查询卡券详情
+     * 查询用户绑定卡券详情
      * @param userCode
      * @param serialCode
      * @return
      */
-    CouponVo selectCouponById(String userCode, String serialCode);
+    CouponVo selectBindCouponByByUser(String userCode, String serialCode);
 
     /**
      * 领取卡券
@@ -33,4 +33,18 @@ public interface CouponService {
      * @return
      */
     boolean receiveCoupon(String userCode, CouponBindBo bo);
+
+    /**
+     * 查询卡券列表
+     * @param queryModel
+     * @return
+     */
+    Page<CouponVo> selectCouponPage(CouponQueryModel queryModel);
+
+    /**
+     * 查询根据卡券批次编号查询卡券
+     * @param serialCode
+     * @return
+     */
+    CouponVo selectCouponByBatchId(String serialCode);
 }

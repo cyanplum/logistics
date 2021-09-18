@@ -24,4 +24,20 @@
         WHERE deleted = 0
         AND `receiver_num` - #{count} <![CDATA[>=]]> 0
     </update>
+
+    <select id="selectCouponBatchPage" resultType="cn.sevenlion.logistics.common.model.entity.member.CouponBatchEntity">
+        SELECT mcb.* FROM member_coupon= AS mc
+        LEFT JOIN member_coupon_batch AS mcb
+        ON mc.serial_code = mcb.coupon_code
+        <where>
+            <if test="name != null and name != ''">
+                AND mc.name like CONCAT('%',#{name},'%')
+            </if>
+            <if test="">
+                AND mc.type = #{type}
+            </if>
+            AND mc.deleted = 0
+            AND mcb.deleted = 0
+        </where>
+    </select>
 </mapper>

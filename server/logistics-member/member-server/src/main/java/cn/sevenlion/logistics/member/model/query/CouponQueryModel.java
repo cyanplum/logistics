@@ -18,4 +18,10 @@ public class CouponQueryModel extends BaseQueryModel {
      */
     @ApiModelProperty("卡券状态")
     private Integer status;
+
+    @ApiModelProperty("卡券名称")
+    private String name;
+
+    @ApiModelProperty("卡券类型")
+    private Integer type;
 }

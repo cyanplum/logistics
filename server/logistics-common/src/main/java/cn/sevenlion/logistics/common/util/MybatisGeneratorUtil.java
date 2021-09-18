@@ -118,7 +118,7 @@ public class MybatisGeneratorUtil {
         strategy.setEntityBooleanColumnRemoveIsPrefix(true);
         strategy.setEntityBuilderModel(true);
         strategy.setRestControllerStyle(true);
-        strategy.setInclude("member_coupon","member_coupon_batch","member_growth_level");
+        strategy.setInclude("member_task","member_task_gift");
         strategy.setControllerMappingHyphenStyle(true);
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());

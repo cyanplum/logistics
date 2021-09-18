@@ -42,6 +42,7 @@ public class IntegralExchangeServiceImpl implements ExchangeStrategyService {
     @Override
     public boolean exchange(UserEntity userEntity, CouponEntity couponEntity) {
         // TODO: 2021/9/17 领取
+        //扣减积分
         return false;
     }
 }
