@@ -69,6 +69,10 @@ public class CommonResultPage<T> {
         return new CommonResultPage(ResultCode.SUCCESS.getCode(), "成功", page.getRecords(), true, page.getPages(), page.getTotal());
     }
 
+    public static <T> CommonResultPage<T> success(Page page, List<T> result) {
+        return new CommonResultPage(ResultCode.SUCCESS.getCode(), "成功", result, true, page.getPages(), page.getTotal());
+    }
+
     public static <T> CommonResultPage<T> failed(long code, String msg, List<T> data) {
         return new CommonResultPage(code, msg, data, false, 0L, 0L);
     }

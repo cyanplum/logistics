@@ -17,7 +17,7 @@ import java.util.stream.Stream;
  * @create: 2021-09-30
  */
 
-public class ConvertUtils<T> {
+public class ConvertUtils {
 
     @SneakyThrows
     public static <T> T convert(Object source, Class<T> clazz) {
