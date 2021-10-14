@@ -1,5 +1,8 @@
 package cn.sevenlion.logistics.user.server.controller;
 
+import cn.binarywang.wx.miniapp.api.WxMaService;
+import cn.binarywang.wx.miniapp.api.WxMaUserService;
+import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.collection.CollUtil;
@@ -18,6 +21,7 @@ import cn.sevenlion.logistics.user.server.model.UserInfo;
 import cn.sevenlion.logistics.user.server.model.query.UserAuthQueryModel;
 import cn.sevenlion.logistics.user.server.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,8 +62,11 @@ public class AuthController {
     @Autowired
     private UserPermissionManager userPermissionManager;
 
+    @Autowired
+    private WxMaService wxMaService;
+
     @ApiOperation("登录")
-    @PostMapping
+    @PostMapping("/test")
     public CommonResult auth(@Valid @RequestBody UserAuthQueryModel queryModel) {
         UserEntity userEntity = userService.auth(queryModel);
         String roleCode = userEntity.getRoleCode();
@@ -88,7 +95,39 @@ public class AuthController {
         return CommonResult.success(result);
     }
 
+    @ApiModelProperty
+    @PostMapping
+    public CommonResult login(@RequestBody UserAuthQueryModel queryModel) {
+        String code = queryModel.getCode();
+        try {
+            WxMaUserService wxMaUserService = wxMaService.getUserService();
+            WxMaJscode2SessionResult session = wxMaUserService.getSessionInfo(code);
+            String openid = session.getOpenid();
+            System.out.println(code);
+            System.out.println(openid);
+        } catch (Exception e) {
+
+        }
+        return CommonResult.success();
+    }
+
+    @ApiModelProperty
     @GetMapping
+    public CommonResult logins(UserAuthQueryModel queryModel) {
+        String code = queryModel.getCode();
+        try {
+            WxMaUserService wxMaUserService = wxMaService.getUserService();
+            WxMaJscode2SessionResult session = wxMaUserService.getSessionInfo(code);
+            String openid = session.getOpenid();
+            System.out.println(code);
+            System.out.println(openid);
+        } catch (Exception e) {
+
+        }
+        return CommonResult.success();
+    }
+
+    @GetMapping("test")
     public CommonResult test() {
         System.out.println(Thread.currentThread().getName());
         try {

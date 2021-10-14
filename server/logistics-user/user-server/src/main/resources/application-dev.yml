@@ -42,3 +42,6 @@ sa-token:
   is-read-head: true
   is-read-body: false
   token-prefix: Bearer
+wechat:
+  appId: wx60d351de447236f5
+  secret: fda3399829e802a7adba5595c85d1bc3

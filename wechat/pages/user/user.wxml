@@ -1,0 +1,4 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='titleText'>申请获取以下权限</view>
+</view>
